@@ -1,5 +1,6 @@
 import state from "./state.js";
 import { canvasWidth, canvasHeight } from "./config.js";
+import { htmlElements } from "./state.js";
 
 export function renderPanel(){
     const div=document.getElementById("info-panel")
@@ -30,4 +31,12 @@ export function renderCanvas(){
 
     cnv.style.width = canvasWidth + "px"
     cnv.style.height = canvasHeight + "px"
+}
+
+export function renderPanelInfo(){
+    htmlElements.info.innerHTML=`
+    <br>
+    Points: ${state.points}<br>
+    Time: ${Math.floor(state.totalTime)}s<br>
+    `
 }

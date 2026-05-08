@@ -220,15 +220,3 @@ T corta
 T
 
 */
-
-/*Numbers Codes
-0=No pintar
-1=Normal
-2=izquierda
-3=abajo
-4=derecha
-5=izquierda abajo
-6=derecha abajo
-7=todos
-
-*/

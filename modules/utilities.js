@@ -4,6 +4,7 @@ import Form from "./form.js"
 import form from "./graphicsForms.js"
 import state from "./state.js"
 import { initPlane } from "./plane.js"
+import { completeRowMusicEffect, initMusic } from "./music.js"
 
 export function randomInt(maxNum) {
     return Math.floor(Math.random() * maxNum)
@@ -121,7 +122,10 @@ export function isRowComplete() {
             if (plane[row][column] === 0) {
                 break
             } else {
-                if (column === lastColumnIndex) return row
+                if (column === lastColumnIndex) {
+                    completeRowMusicEffect()
+                    return row
+                }
             }
         }
     }
@@ -135,6 +139,8 @@ export function handleCompletedRow() {
 export function deleteRow(row) {
     state.plane.splice(row, 1)
     state.plane.unshift(new Array(widthInBoxs).fill(0))
+    state.dropInterval-=10
+    state.points+=1
     handleCompletedRow()
 }
 

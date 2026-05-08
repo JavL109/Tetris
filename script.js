@@ -1,9 +1,10 @@
 import initializeKeyEvents from "./modules/keyEvents.js"
 import state from "./modules/state.js"
 import { eraseCanvas } from "./modules/handlePlane.js"
-import { renderCanvas, renderPanel } from "./modules/ui.js"
+import { renderCanvas, renderPanel, renderPanelInfo } from "./modules/ui.js"
 import { handleCompletedRow, haveLost, initForms, newForm } from "./modules/utilities.js"
 import { initPlane, renderPlane } from "./modules/plane.js"
+import { initMusic } from "./modules/music.js"
 
 //Functions
 function init() {
@@ -13,12 +14,15 @@ function init() {
     initForms()
     initializeKeyEvents()
     renderPanel()
+    initMusic()
 
     requestAnimationFrame(main)
 }
 
 
 function main(time = 0) {
+    renderPanelInfo()
+
     if (state.lose) {
         haveLost()
     } else {
@@ -26,6 +30,7 @@ function main(time = 0) {
         const pause = (state.pause && state.debugging) ? true : false
         state.canPause = pause
         if (!state.canPause) {
+            state.totalTime+=1/60
 
             eraseCanvas()
             // paintMap()

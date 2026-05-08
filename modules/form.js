@@ -1,6 +1,7 @@
 import {BoxS, canvasHeight, canvasWidth} from "./config.js"
 import {calcBelowCells, canMove, isTouchingGround, randomForm, renderCell} from "./utilities.js"
 import state from "./state.js"
+import { rotateMusicEffect } from "./music.js"
 
 
 function borderBoxes(schema){
@@ -89,6 +90,7 @@ class Form{
         }
 
     rotate(){
+        rotateMusicEffect()
         if(this.rotatePos < this.maxNumOfRotatePos -1){
             this.rotatePos++
             this.schema=this.form.positions[this.rotatePos]
@@ -96,6 +98,8 @@ class Form{
             if(!canMove("nowhere", this)){
                 this.rotatePos--
             }
+
+
         } else {
             this.rotatePos=0
         }
